@@ -1,0 +1,12 @@
+server:
+  port: 8780
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      #注册中心的地址
+      defaultZone: http://localhost:8760/eureka/
+spring:
+  application:
+    name: eureka-consumer

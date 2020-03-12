@@ -1,0 +1,39 @@
+server:
+  port: 8790
+eureka:
+  client:
+    serviceUrl:
+      #注册中心的地址
+      defaultZone: http://localhost:8760/eureka/
+spring:
+  application:
+    name: config-server
+  # git管理配置文件
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/zz1cc/config
+          search-paths: cloudtest
+          username: 1411746842@qq.com
+          password: cz2211194787
+          label: master
+  # 配置mq，需要启动mq,Springboot会自动连接  http://localhost:15672
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+# 允许/actuator/bus-refresh接口被外部调用
+management:
+  endpoints:
+    web:
+      exposure:
+        # 这里不能写成 *
+        include: bus-refresh
+
+#是否开启基本的鉴权，默认为true
+security:
+  basic:
+    enabled: false

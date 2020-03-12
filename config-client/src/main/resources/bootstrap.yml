@@ -1,0 +1,29 @@
+eureka:
+  client:
+    service-url:
+      #注册中心的地址
+      defaultZone: http://localhost:8760/eureka/
+spring:
+  cloud:
+    config:
+      # 获取配置文件的名称。name不填那么默认为服务名称
+      name: config-client
+      # 获取配置的策略。例如 config-client-dev.yml name就是config-client  profile就是dev
+      profile: dev
+      # 获取配置文件的分支，默认是master。如果是是本地获取的话，则无用。
+      label: master
+      discovery:
+        # 开启配置信息发现，不开启的话，无法从注册中心获取到相关配置信息。
+        enabled: true
+        # 指定配置中心的service-id，便于扩展为高可用配置集群
+        service-id: config-server
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+security:
+  basic:
+    enabled: false
+

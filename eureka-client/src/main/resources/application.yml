@@ -1,0 +1,14 @@
+server:
+  port: 8770
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #注册服务(可以是生产者也可以是消费者)
+    registerWithEureka: true
+    serviceUrl:
+      #注册中心的地址
+      defaultZone: http://localhost:8760/eureka/
+spring:
+  application:
+    name: eureka-client

@@ -1,0 +1,32 @@
+server:
+  port: 8782
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      #注册中心的地址
+      defaultZone: http://localhost:8760/eureka/
+spring:
+  application:
+    name: zuul
+zuul:
+  routes:
+    #该配置方式中，eureka-client只是给路由一个名称，可以任意起名
+    eureka-client:
+      # 如果匹配到path开头的地址，会会被转发到serviceId指向的名称的服务
+      # 匹配规则 *：代表一层，例如：/a ； **：代表可以多层，例如：/bb/aa
+      path: /**
+      # serviceId  服务的名称
+      serviceId: eureka-client
+    eureka-client1:
+      path: /a1/**
+      serviceId: service-feign
+      # 路由到指定服务
+      url: 'http://localhost:8011/'
+
+#Zuul只路由名称为test映射的微服务
+# zuul:
+# ignored-services:  '*' # 使用'*' 可忽略掉所有微服务
+  # routes:
+  # test: /user/**
